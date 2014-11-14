@@ -1,6 +1,7 @@
 {
     "name": "adamdburton/nanoftpd",
     "description": "",
+    "license": "GPL-2.0",
     "authors": [
         {
             "name": "Adam Burton",
