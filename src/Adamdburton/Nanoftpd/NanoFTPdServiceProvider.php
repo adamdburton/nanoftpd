@@ -2,8 +2,6 @@
 
 namespace AdamDBurton\NanoFTPd;
 
-use AdamDBurton\NanoFTPd\NanoFTPd\Server;
-
 class NanoFTPdServiceProvider extends \Illuminate\Support\ServiceProvider
 {
 	/**
@@ -34,7 +32,7 @@ class NanoFTPdServiceProvider extends \Illuminate\Support\ServiceProvider
 	{
         $this->app['nanoftpd'] = $this->app->share(
             function ($app) {
-                $nanoftpd = new Server();
+                $nanoftpd = new NanoFTPd\Server();
 
                 return $nanoftpd;
             }
