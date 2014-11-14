@@ -292,7 +292,8 @@ class Client
             $this->send("530 Not logged in.");
         }
 
-        $pass = $this->app['hash']->make($this->parameter);
+        //$pass = $this->app['hash']->make($this->parameter);
+        $pass = $this->parameter;
 
         if($this->config->get('nanoftpd::users.driver') == 'eloquent')
         {
