@@ -2,7 +2,7 @@
 
 namespace AdamDBurton\NanoFTPd;
 
-class NanoFTPdServiceProvider extends \Illuminate\Support\ServiceProvider
+class ServiceProvider extends \Illuminate\Support\ServiceProvider
 {
 	/**
 	 * Indicates if loading of the provider is deferred.
@@ -31,10 +31,11 @@ class NanoFTPdServiceProvider extends \Illuminate\Support\ServiceProvider
 	public function register()
 	{
         $this->app['nanoftpd'] = $this->app->share(
-            function ($app) {
-                $nanoftpd = new NanoFTPd\Server();
+            function($app)
+            {
+                $server = new NanoFTPd\Server;
 
-                return $nanoftpd;
+                return $server;
             }
         );
 
@@ -49,8 +50,11 @@ class NanoFTPdServiceProvider extends \Illuminate\Support\ServiceProvider
      */
     protected function registerCommands()
     {
-        $this->app->bindIf('command.nanoftpd', function() {
-            return new Command\NanoFTPd;
+        $this->app->bindIf('command.nanoftpd', function()
+        {
+            $command = new Command\NanoFTPd;
+
+            return $command;
         });
 
         $this->commands(

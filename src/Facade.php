@@ -1,8 +1,8 @@
 <?php
 
-namespace AdamDBurton\NanoFTPd\Facade;
+namespace AdamDBurton\NanoFTPd;
 
-class NanoFTPd extends \Illuminate\Support\Facades\Facade
+class Facade extends \Illuminate\Support\Facades\Facade
 {
     /**
      * Get the registered name of the component.
