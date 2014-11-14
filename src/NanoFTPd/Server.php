@@ -66,10 +66,11 @@ class Server
             $this->socket_error();
 
         // reuse listening socket address
-        socket_setopt($this->socket, SOL_SOCKET, SO_REUSEADDR, 1);
+        if(!@socket_set_option($this->socket, SOL_SOCKET, SO_REUSEADDR, 1))
+            $this->socket_error();
 
         // set socket to non-blocking
-        if(! @socket_set_nonblock($this->socket))
+        if(!@socket_set_nonblock($this->socket))
             $this->socket_error();
 
         // bind listening socket to specific address/port
