@@ -20,10 +20,6 @@ class Eloquent
 
         $instance = new $model;
 
-        $this->app['log']->info('here');
-
-        return $instance->first();
-
         try
         {
             $instance->where($usernameField, $username)->where($passwordField, $password)->firstOrFail();
@@ -40,16 +36,16 @@ class Eloquent
 
     public function getUID()
     {
-        return 501;//return $this->data[$this->app['config']->get('nanoftpd::users.eloquent.uid')];
+        return $this->data[$this->app['config']->get('nanoftpd::users.eloquent.uid')];
     }
 
     public function getGID()
     {
-        return 20;//return $this->data[$this->app['config']->get('nanoftpd::users.eloquent.gid')];
+        return $this->data[$this->app['config']->get('nanoftpd::users.eloquent.gid')];
     }
 
     public function getHomeDirectory()
     {
-        return '/Users/adam/';//return $this->data[$this->app['config']->get('nanoftpd::users.eloquent.home_path')];
+        return $this->data[$this->app['config']->get('nanoftpd::users.eloquent.home_path')];
     }
 }
