@@ -19,16 +19,15 @@ class Eloquent
         $passwordField = $this->app['config']->get('nanoftpd::users.eloquent.password');
 
         $instance = new $model;
+        $instance = $instance->where($usernameField, $username)->where($passwordField, $password)->first();
 
-        try
+        if($instance)
         {
-            $instance->where($usernameField, $username)->where($passwordField, $password)->firstOrFail();
-
             $this->data = $instance;
 
             return $this->data;
         }
-        catch(\Exception $e)
+        else
         {
             return false;
         }

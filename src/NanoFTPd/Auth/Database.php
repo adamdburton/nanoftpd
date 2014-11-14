@@ -18,15 +18,15 @@ class Database
         $usernameField = $this->app['config']->get('nanoftpd::users.eloquent.username');
         $passwordField = $this->app['config']->get('nanoftpd::users.eloquent.password');
 
-        try
-        {
-            $row = $this->app['db']->table($table)->where($usernameField, $username)->where($passwordField, $password)->first();
+        $row = $this->app['db']->table($table)->where($usernameField, $username)->where($passwordField, $password)->first();
 
+        if($row)
+        {
             $this->data = $row;
 
-            return $row;
+            return $this->data;
         }
-        catch(\Exception $e)
+        else
         {
             return false;
         }
