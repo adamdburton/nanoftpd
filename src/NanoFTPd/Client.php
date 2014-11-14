@@ -798,7 +798,6 @@ class Client
             }
         }
 
-
         if(!$c)
         {
             $this->send("452 Can't open data connection.");
