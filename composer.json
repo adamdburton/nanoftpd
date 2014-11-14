@@ -1,6 +1,6 @@
 {
     "name": "adamdburton/nanoftpd",
-    "description": "",
+    "description": "NanoFTPd server from http://nanoftpd.sourceforge.net/ for Laravel",
     "license": "GPL-2.0",
     "authors": [
         {
