@@ -24,7 +24,7 @@ class Eloquent
         {
             $instance->where($usernameField, $username)->where($passwordField, $password)->firstOrFail();
 
-            $this->data = $instance->toArray();
+            $this->data = $instance;
 
             return $this->data;
         }
@@ -36,16 +36,22 @@ class Eloquent
 
     public function getUID()
     {
-        return $this->data[$this->app['config']->get('nanoftpd::users.eloquent.uid')];
+        $field = $this->app['config']->get('nanoftpd::users.eloquent.uid');
+
+        return $this->data->$field;
     }
 
     public function getGID()
     {
-        return $this->data[$this->app['config']->get('nanoftpd::users.eloquent.gid')];
+        $field = $this->app['config']->get('nanoftpd::users.eloquent.gid');
+
+        return $this->data->$field;
     }
 
     public function getHomeDirectory()
     {
-        return $this->data[$this->app['config']->get('nanoftpd::users.eloquent.home_path')];
+        $field = $this->app['config']->get('nanoftpd::users.eloquent.home_path');
+
+        return $this->data->$field;
     }
 }
