@@ -236,7 +236,7 @@ class File
     {
         clearstatcache();
         $type = ($create) ? "w" : "r";
-        $type = ($append) ? "a" : "w";
+        $type = ($append) ? "a" : $type;
 
         if(substr($filename, 0, 1) == "/")
         {

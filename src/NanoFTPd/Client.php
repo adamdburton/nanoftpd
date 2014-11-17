@@ -83,7 +83,7 @@ class Client
 
             if($command == "QUIT")
             {
-                $this->app['log']->info('[NanoFTPd] '."client: " . trim($this->buffer) . "\n");
+                $this->app['log']->info('[NanoFTPd] Client: ' . trim($this->buffer));
                 $this->cmd_quit();
 
                 return $this->return;
@@ -91,7 +91,7 @@ class Client
             }
             elseif($command == "USER")
             {
-                $this->app['log']->info('[NanoFTPd] '."client: " . trim($this->buffer) . "\n");
+                $this->app['log']->info('[NanoFTPd] Client: ' . trim($this->buffer));
                 $this->cmd_user();
 
                 return $this->return;
@@ -99,13 +99,13 @@ class Client
             }
             elseif($command == "PASS")
             {
-                $this->app['log']->info('[NanoFTPd] '."client: PASS xxxx\n");
+                $this->app['log']->info('[NanoFTPd] Client: PASS xxxx');
                 $this->cmd_pass();
 
                 return $this->return;
             }
 
-            $this->app['log']->info('[NanoFTPd] '.$this->user . ": ".trim($this->buffer));
+            $this->app['log']->info('[NanoFTPd] Client: ' . $this->user . ': ' . trim($this->buffer));
 
             if(!$this->loggedin)
             {
@@ -580,7 +580,7 @@ class Client
     {
         $file = trim($this->parameter);
 
-        if ($this->io->exists($file))
+        if($this->io->exists($file))
         {
             if($this->io->type($file) == "dir")
             {
@@ -603,13 +603,13 @@ class Client
         {
             while(($buf = socket_read($this->data_conn, 512)) !== false)
             {
-                if (! strlen($buf)) break;
+                if(!strlen($buf)) break;
                 $this->io->write($buf);
             }
         }
         else
         {
-            while (!feof($this->data_fsp))
+            while(!feof($this->data_fsp))
             {
                 $buf = fgets($this->data_fsp, 16384);
                 $this->io->write($buf);
@@ -797,6 +797,7 @@ class Client
                 }
             }
         }
+
 
         if(!$c)
         {
