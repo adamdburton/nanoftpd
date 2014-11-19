@@ -764,8 +764,8 @@ class Client
 
         $this->pasv = true;
 
-        $low_port = $this->config['nanoftpd::server.passive.low'];
-        $high_port = $this->config['nanoftpd::server.passive.high'];
+        $low_port = $this->config->get('nanoftpd::server.passive.low');
+        $high_port = $this->config->get('nanoftpd::server.passive.high');
 
         $try = 0;
 
