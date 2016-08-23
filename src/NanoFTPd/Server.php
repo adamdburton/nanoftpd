@@ -62,26 +62,26 @@ class Server
     function run()
     {
         // assign listening socket
-        if(!($this->socket = @socket_create(AF_INET, SOCK_STREAM, 0)))
+        if(!($this->socket = socket_create(AF_INET, SOCK_STREAM, 0)))
             $this->socket_error();
 
         // reuse listening socket address
-        if(!@socket_set_option($this->socket, SOL_SOCKET, SO_REUSEADDR, 1))
+        if(!socket_set_option($this->socket, SOL_SOCKET, SO_REUSEADDR, 1))
             $this->socket_error();
 
         // set socket to non-blocking
-        if(!@socket_set_nonblock($this->socket))
+        if(!socket_set_nonblock($this->socket))
             $this->socket_error();
 
         // bind listening socket to specific address/port
-        if(!@socket_bind($this->socket, $this->config->get('nanoftpd::server.ip'), $this->config->get('nanoftpd::server.port')))
+        if(!socket_bind($this->socket, $this->config->get('nanoftpd::server.ip'), $this->config->get('nanoftpd::server.port')))
             $this->socket_error();
 
         // listen on listening socket
         if(!socket_listen($this->socket))
             $this->socket_error();
 
-        $this->app['log']->info('[NanoFTPd] Server starting...');
+        $this->app['log']->info('[NanoFTPd] FTP Server starting on ' . $this->config->get('nanoftpd::server.ip') . ':' . $this->config->get('nanoftpd::server.port') . '...');
 
         while($this->shouldRun)
         {
@@ -156,7 +156,7 @@ class Server
                         $clientID = $name;
 
                         // client socket has incoming data
-                        if(($read = @socket_read($sock, 1024)) === false || $read == '')
+                        if(($read = socket_read($sock, 1024)) === false || $read == '')
                         {
                             if ($read != '')
                                 $this->socket_error();
