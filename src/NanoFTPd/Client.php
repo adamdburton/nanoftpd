@@ -776,7 +776,7 @@ class Client
         }
 
         // reuse listening socket address
-        if(!@socket_set_option($socket, SOL_SOCKET, SO_REUSEADDR, 1))
+        if(!socket_set_option($socket, SOL_SOCKET, SO_REUSEADDR, 1))
         {
             $this->send("425 Can't open data connection.");
             return;
@@ -985,7 +985,7 @@ class Client
     {
         if($this->pasv)
         {
-            if(!$conn = @socket_accept($this->data_socket))
+            if(!$conn = socket_accept($this->data_socket))
             {
                 $this->app['log']->info('[NanoFTPd] '.$this->user.": server: Client not connected\n");
 

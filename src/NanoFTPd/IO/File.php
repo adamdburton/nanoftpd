@@ -155,11 +155,11 @@ class File
     {
         if(substr($filename, 0, 1) == "/")
         {
-            return (@file_exists($this->root . $filename));
+            return file_exists($this->root . $filename);
         }
         else
         {
-            return (@file_exists($this->root . $this->cwd . $filename));
+            return file_exists($this->root . $this->cwd . $filename);
         }
     }
 
@@ -179,11 +179,11 @@ class File
     {
         if(substr($dir, 0, 1) == "/")
         {
-            return (@mkdir($this->root . $dir));
+            return mkdir($this->root . $dir);
         }
         else
         {
-            return (@mkdir($this->root . $this->cwd . $dir));
+            return mkdir($this->root . $this->cwd . $dir);
         }
     }
 
@@ -191,11 +191,11 @@ class File
     {
         if(substr($dir, 0, 1) == "/")
         {
-            return (@rmdir($this->root . $dir));
+            return rmdir($this->root . $dir);
         }
         else
         {
-            return (@rmdir($this->root . $this->cwd . $dir));
+            return rmdir($this->root . $this->cwd . $dir);
         }
     }
 
